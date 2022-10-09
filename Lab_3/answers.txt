@@ -1,0 +1,15 @@
+sort1 uses: Bubble sort
+
+How do you know?: Cause time for sorted5000, random5000 is not equal.
+Than it is the only algorithm efficiency of which is not equal in both best and the worst scenarios.
+This is the bubble sort.
+
+sort2 uses: Merge sort
+
+How do you know?: Cause time for sorted5000, reversed5000 and random5000 is equal. Also, the algorithm is faster than sort1 and sort2.
+Based on this efficiency of the algorithm is Θ(n log n). This is the merge sort.
+
+sort3 uses: Selection sort
+
+How do you know?: Cause time for sorted5000, random5000 is equal. And time is bigger than sort 2.
+Than it is selection sort
