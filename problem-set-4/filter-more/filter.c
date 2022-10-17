@@ -4,6 +4,27 @@
 
 #include "helpers.h"
 
+
+ /*
+ 24 bits per pixel
+ 8 bits for red
+ 8 bits for green
+ 8 bits for blue
+
+ The header, which represents height and width:
+
+  BITMAPFILEHEADER --- 14 bytes long
+  BITMAPINFOHEADER --- 40 bytes long
+
+  BMP stores colors as GBR
+
+Notice that you could represent a bitmap as a 2-dimensional array of pixels:
+where the image is an array of rows, each row is an array of pixels.
+Indeed, that’s how we’ve chosen to represent bitmap images in this problem.
+*/
+
+
+
 int main(int argc, char *argv[])
 {
     // Define allowable filters
