@@ -56,13 +56,6 @@ bool check_next(node *list, const char *word)
 // Hashes word to a number
 unsigned int hash(const char *word)
 {
-    // int first = toupper(word[0]) - 'A';
-    // if ( strlen(word) > 2 && isalpha(word[1]))
-    // {
-    //     int second = toupper(word[1]) - 'A';
-    //     return first + second;
-    // }
-    // return first;
     unsigned int total = 0;
     for (int i = 0; i < strlen(word); i++)
     {
