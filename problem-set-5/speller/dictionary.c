@@ -2,8 +2,14 @@
 
 #include <ctype.h>
 #include <stdbool.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <strings.h>
+#include <string.h>
 
 #include "dictionary.h"
+
+unsigned int dictionary_size = 0;
 
 // Represents a node in a hash table
 typedef struct node
@@ -13,8 +19,10 @@ typedef struct node
 }
 node;
 
-// TODO: Choose number of buckets in hash table
-const unsigned int N = 26;
+bool check_next(node *list, const char *word);
+void free_node(node *list);
+
+const unsigned int N = 4051;
 
 // Hash table
 node *table[N];
@@ -22,34 +30,107 @@ node *table[N];
 // Returns true if word is in dictionary, else false
 bool check(const char *word)
 {
-    // TODO
-    return false;
+    unsigned int index = hash(word);
+    node *p = table[index];
+    if (p == NULL)
+    {
+        return false;
+    }
+    return check_next(p, word);
 }
+
+bool check_next(node *list, const char *word)
+{
+    if (list == NULL)
+    {
+        return false;
+    }
+    if (strcasecmp(list->word, word) == 0)
+    {
+        return true;
+    }
+    return check_next(list->next, word);
+}
+
 
 // Hashes word to a number
 unsigned int hash(const char *word)
 {
-    // TODO: Improve this hash function
-    return toupper(word[0]) - 'A';
+    // int first = toupper(word[0]) - 'A';
+    // if ( strlen(word) > 2 && isalpha(word[1]))
+    // {
+    //     int second = toupper(word[1]) - 'A';
+    //     return first + second;
+    // }
+    // return first;
+    unsigned int total = 0;
+    for (int i = 0; i < strlen(word); i++)
+    {
+        if (isalpha(word[i]))
+            total += toupper(word[i]);
+    }
+    return total;
 }
 
 // Loads dictionary into memory, returning true if successful, else false
 bool load(const char *dictionary)
 {
-    // TODO
-    return false;
+    FILE *file = fopen(dictionary, "r");
+    if (file == NULL)
+    {
+        return false;
+    }
+
+    char word[LENGTH + 1];
+
+    while (fscanf(file, "%s ", word) != EOF)
+    {
+        node *p = malloc(sizeof(node));
+        if (p == NULL)
+        {
+            return false;
+        }
+        unsigned int index = hash(word);
+        p->next = NULL;
+        strcpy(p->word, word);
+
+        if (table[index] == NULL)
+        {
+            table[index] = p;
+        }
+        else
+        {
+            p->next = table[index];
+            table[index] = p;
+        }
+        dictionary_size++;
+    }
+    return true;
 }
+
 
 // Returns number of words in dictionary if loaded, else 0 if not yet loaded
 unsigned int size(void)
 {
-    // TODO
-    return 0;
+    return dictionary_size;
 }
 
 // Unloads dictionary from memory, returning true if successful, else false
 bool unload(void)
 {
-    // TODO
-    return false;
+    for (int i = 0; i < LENGTH + 1; i++)
+    {
+        free_node(table[i]);
+    }
+    return true;
+}
+
+void free_node(node *list)
+{
+    if (list == NULL)
+    {
+        return;
+    }
+    free_node(list->next);
+    free(list);
 }
