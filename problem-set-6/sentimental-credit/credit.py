@@ -62,4 +62,6 @@ def get_first_numbers(number: int) -> int:
         number //= 10
     return number
 
-main()
+
+if __name__ == "__main__":
+    main()

@@ -18,4 +18,5 @@ def get_height():
             print("Height must be a number")
 
 
-main()
+if __name__ == "__main__":
+    main()
