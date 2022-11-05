@@ -15,7 +15,7 @@ unsigned int dictionary_size = 0;
 typedef struct node
 {
     char word[LENGTH + 1];
-    struct node *next;
+   struct node *next;
 }
 node;
 
