@@ -6,26 +6,69 @@
         <link href="styles.css" rel="stylesheet">
         <title>Trivia!</title>
         <script>
-            // TODO: Add code to check answers to questions
+
+            function checkMultipleChoice(id) {
+                var isCorrect = document.getElementById("multChoice"); 
+                var button = document.getElementById(id); 
+                if (id == "right" ){
+                    button.style.backgroundColor= 'green';
+                    writeAnswer(isCorrect, true);
+                } else {
+                    button.style.backgroundColor= 'red';
+                    writeAnswer(isCorrect, false);
+                }
+            }
+
+            function checkFreeResponse() {
+                let isCorrect = document.getElementById("freeResponse"); 
+                let answer = document.querySelector('#answer');
+                if (answer.value.toLowerCase() == 'switzerland') {
+                    answer.style.color = "green";
+                    writeAnswer(isCorrect, true);
+                } else { 
+                    answer.style.color = "red";
+                    writeAnswer(isCorrect, false);
+                }
+            }
+
+            function writeAnswer(answer, isRight) {
+                if (isRight) {
+                    answer.style.color = "green"; 
+                    answer.innerHTML = "Correct!";
+                } else {
+                    answer.style.color = "red"; 
+                    answer.innerHTML = "Incorrect";
+                }
+            }
+            
         </script>
     </head>
     <body>
         <div class="header">
             <h1>Trivia!</h1>
         </div>
-
+        
         <div class="container">
             <div class="section">
                 <h2>Part 1: Multiple Choice </h2>
+                <h3>What is the approximate ratio of people to sheep in New Zealand?</h3>
                 <hr>
-                <!-- TODO: Add multiple choice question here -->
+                <h3 id="multChoice"></h3>
+                <button type="button" id="wrong1" onclick="checkMultipleChoice(this.id)">6 people per 1 sheep</button>
+                <button type="button" id="wrong2" onclick="checkMultipleChoice(this.id)">3 people per 1 sheep</button>
+                <button type="button" id="wrong3" onclick="checkMultipleChoice(this.id)">1 person per 3 sheep</button>
+                <button type="button" id="right" onclick="checkMultipleChoice(this.id)">1 people per 6 sheep</button>
             </div>
 
             <div class="section">
                 <h2>Part 2: Free Response</h2>
                 <hr>
-                <!-- TODO: Add free response question here -->
+                <h3>In which country is it illegal to own only guinea pig, as a lone guinea pig might get lonely?</h3>
+                <h3 id="freeResponse"></h3>
+                <input id="answer" type="text">
+                <button type="submit" onclick="checkFreeResponse()" value="Check answer">Check answer</button> 
             </div>
+
         </div>
     </body>
 </html>
