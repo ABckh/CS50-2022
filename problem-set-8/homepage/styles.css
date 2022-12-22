@@ -1,0 +1,16 @@
+img {
+    width: 100%;
+}
+
+b {
+    margin-left: 5px;
+}
+
+input {
+    width: 70%;
+    height: auto;
+}
+
+input.btn {
+    margin-top: 10px;
+}
