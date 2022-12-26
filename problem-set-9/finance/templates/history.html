@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quoted
+{% endblock %}
+
+{% block main %}
+    <h2>Search results:</h2>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+                <th scope="col">Symbol</th>
+                <th scope="col">Shares</th>
+                <th scope="col">Price</th>
+                <th scope="col">Transacted</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for item in history %}
+                <tr>
+                    <td>{{item.symbol}}</td>
+                    {% if item.transaction_type == 'Purchase' %}
+                        <td>+{{item.amount}}</td>
+                    {% else %}
+                        <td>-{{item.amount}}</td>
+                    {% endif %}
+                    <td>{{item.price | usd}}</td>
+                    <td>{{item.time}}</td>
+                </tr>
+            {% endfor %}
+      </tbody>
+    </table>
+{% endblock %}

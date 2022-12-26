@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quoted
+{% endblock %}
+
+{% block main %}
+    <h2>Search results:</h2>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Company name</th>
+            <th scope="col">Current price</th>
+            <th scope="col">Symbol</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ result.name }}</td>
+            <td>{{ price | usd }}</td>
+            <td>{{ result.symbol }}</td>
+          </tr>
+          <tr>
+      </tbody>
+    </table>
+{% endblock %}

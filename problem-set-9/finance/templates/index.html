@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Finance portfolio
+{% endblock %}
+
+{% block main %}
+    <h2>Search results:</h2>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+              <th scope="col">Symbol</th>
+              <th scope="col">Company name</th>
+              <th scope="col">Shares</th>
+              <th scope="col">Price</th>
+              <th scope="col">TOTAL</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for transaction in transactions %}
+          <tr>
+            <td>{{transaction.symbol}}</td> 
+            <td>{{transaction.company_name}}</td> 
+            <td>{{transaction.amount}}</td> 
+            <td>{{transaction.price | usd}}</td> 
+            <td>{{transaction.total | usd}}</td> 
+            <td></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td class="border-0 fw-bold text-end" colspan="4">Cash</td>
+                <td class="border-0 w-bold text-end">{{ cash | usd }}</td> 
+            </tr> 
+            <tr>
+                <td class="border-0 fw-bold text-end" colspan="4">TOTAL</td>
+                <td class="border-0 w-bold text-end">{{ total | usd }}</td> 
+            </tr>
+        </tfoot>
+    </table>
+{% endblock %}
